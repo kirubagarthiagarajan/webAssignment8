@@ -27,7 +27,7 @@ router.post('/user/create', (req, res) => {
     }
     else if (!req.body.fullName.match(nameRegex)) {
 
-        res.status(500).json({ code: 500, message: 'Full Name contains only alphabets and spaces!' })
+        res.status(500).json({ code: 500, message: 'Full Name contains only two words only with alphabets seperated by a space!' })
     }
     else if (!req.body.email.match(mailRegEx)) {
 
@@ -65,7 +65,7 @@ router.put('/user/edit/:email', async (req, res) => {
     }
     else if (!req.body.fullName.match(nameRegex)) {
 
-        res.status(500).json({ code: 500, message: 'Full Name contains only alphabets and spaces!' })
+        res.status(500).json({ code: 500, message: 'Full Name contains only two words only with alphabets seperated by a space!' })
     }
     else if (!req.body.password.match(passwordRegEx)) {
 
@@ -106,7 +106,6 @@ router.delete('/user/delete/:email', (req, res) => {
         }
     });
 });
-
 
 
 module.exports = router;
