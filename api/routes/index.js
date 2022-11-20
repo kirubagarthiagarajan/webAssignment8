@@ -19,7 +19,7 @@ router.get('/user/getAll', (req, res) => {
 //save User
 router.post('/user/create', (req, res) => {
 
-    let nameRegex = /^[A-Z][a-z]+\s[A-Z][a-z]+$/;
+    let nameRegex = /^[a-zA-Z ]+$/;
     let mailRegEx = /^[A-Za-z][A-Za-z0-9._%+-]{0,63}@northeastern.edu$/;
     let passwordRegEx = new RegExp('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})');
     if (!req.body.fullName || !req.body.email || !req.body.password) {
@@ -27,7 +27,7 @@ router.post('/user/create', (req, res) => {
     }
     else if (!req.body.fullName.match(nameRegex)) {
 
-        res.status(500).json({ code: 500, message: 'Full Name contains only two words only with alphabets seperated by a space!' })
+        res.status(500).json({ code: 500, message: 'Full Name contains only alphabets and spaces!' })
     }
     else if (!req.body.email.match(mailRegEx)) {
 
@@ -55,17 +55,46 @@ router.post('/user/create', (req, res) => {
 });
 
 
+//login user
+router.post('/user/login', (req, res) => {
+
+    let mailRegEx = /^[A-Za-z][A-Za-z0-9._%+-]{0,63}@northeastern.edu$/;
+    if (!req.body.email || !req.body.password) {
+
+        res.status(200).json({ code: 199, message: 'Password and E-mail are required to login!' })
+    }
+
+    else if (!req.body.email.match(mailRegEx)) {
+
+        res.status(200).json({ code: 401, message: 'E-mail should be of format yourmail@northeastern.edu' })
+    }
+    else {
+
+        const filter = { email: req.body.email, password: req.body.password };
+
+        User.findOne(filter, (err, data) => {
+            if (!err && data != null) {
+
+                res.status(200).json({ code: 200, message: 'Logged in!' });
+            } else if (data == null || !data.length > 0) {
+
+                res.status(200).json({ code: 500, message: 'Entered user name or password is incorrect' });
+            }
+            else if (err) {
+                console.log(err);
+            }
+        });
+    }
+});
+
+
 //updateUser
 router.put('/user/edit/:email', async (req, res) => {
-    let nameRegex = /^[A-Z][a-z]+\s[A-Z][a-z]+$/;
+    let nameRegex = /^[a-zA-Z ]+$/;
     let passwordRegEx = new RegExp('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})');
+    if (!req.body.fullName.match(nameRegex)) {
 
-    if (!req.body.fullName || !req.body.password) {
-        res.status(500).json({ code: 500, message: 'Full Name and Password are required to update a User!' })
-    }
-    else if (!req.body.fullName.match(nameRegex)) {
-
-        res.status(500).json({ code: 500, message: 'Full Name contains only two words only with alphabets seperated by a space!' })
+        res.status(500).json({ code: 500, message: 'Full Name contains only alphabets and spaces!' })
     }
     else if (!req.body.password.match(passwordRegEx)) {
 
@@ -81,7 +110,7 @@ router.put('/user/edit/:email', async (req, res) => {
             if (!err && data != null) {
                 res.status(200).json({ code: 200, message: 'User Updated Successfully' });
             } else if (data == null) {
-                res.status(404).json({ code: 404, message: 'No User found with this E-mail' });
+                res.status(500).json({ code: 500, message: 'No User found with this E-mail' });
             }
             else if (err) {
                 console.log(err);
@@ -99,13 +128,14 @@ router.delete('/user/delete/:email', (req, res) => {
         if (!err & data != null) {
             res.status(200).json({ code: 200, message: 'User deleted', deletedUser: data })
         } else if (data == null) {
-            res.status(404).json({ code: 404, message: 'No User found with this E-mail' });
+            res.status(500).json({ code: 500, message: 'No User found with this E-mail' });
         }
         else if (err) {
             console.log(err);
         }
     });
 });
+
 
 
 module.exports = router;

@@ -1,0 +1,69 @@
+label {
+  width: 150px;
+}
+
+#container {
+  width: 100%;
+  height: 100vh;
+  margin: auto;
+  background-color: skyblue;
+}
+
+main {
+  text-align: center;
+  padding: 10px;
+}
+
+.cardContainer {
+  position: absolute;
+  left: 33.33%;
+  right: 33.33%;
+  top: 33.33%;
+  text-align: center;
+}
+
+.cardContainer:hover {
+  box-shadow: 5px 5px 5px grey;
+}
+
+[id^="error_"] {
+  display: inline-block;
+  font-size: 12px;
+  margin-left: 3%;
+}
+
+#feedBackTable {
+  border-collapse: collapse;
+  font-size: 14px;
+  color: black;
+  margin: auto auto;
+  width: 100%;
+  overflow: scroll;
+}
+
+#feedBackTable,
+#feedBackTable th,
+#feedBackTable td {
+  border: 1px solid;
+}
+
+#feedBackTable td {
+  padding: 5px;
+}
+
+.buttons {
+  margin: 10px;
+}
+
+.buttons:hover {
+  background-color: grey;
+}
+
+label {
+  padding-right: 10px;
+}
+
+#error_emailId {
+  color: red;
+  font-weight: bold;
+}
