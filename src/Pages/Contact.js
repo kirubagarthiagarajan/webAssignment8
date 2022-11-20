@@ -15,7 +15,7 @@ function Contact() {
 
   return (
     <div id="container">
-      <div class="cardContainer">
+      <div className="cardContainer">
         <Card style={{ backgroundColor: 'yellow', color: 'white' }}>
           <Card.Body>
             <Card.Title style={{ color: 'cyan' }}>Contact Us:</Card.Title>

@@ -22,7 +22,7 @@ function About() {
 
 
 
-      <div class="cardContainer">
+      <div className="cardContainer">
         <Card style={{ backgroundColor: 'yellow', color: 'black' }}>
           <Card.Body>
             <Card.Title style={{ color: 'cyan' }}>About Us</Card.Title>

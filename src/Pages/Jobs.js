@@ -17,7 +17,7 @@ function Jobs() {
 
     return (
         <div id="container">
-            <div class="row">
+            <div className="row">
                 {jobArray.map(job => {
                     return (
                         <Card style={{ backgroundColor: 'yellow', color: 'black', marginTop: "100px", width: "31%", margin: " 20px 10px 20px 20px" }}>

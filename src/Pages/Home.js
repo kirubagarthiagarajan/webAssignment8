@@ -27,7 +27,7 @@ function Home() {
         <h4 style={{ textAlign: "center", paddingTop: "20px" }}> Welcome, &nbsp; {state.user}</h4>
 
       )}
-      <div class="cardContainer">
+      <div className="cardContainer">
         <Card style={{ backgroundColor: 'grey', color: 'white' }}>
           <Card.Body>
             <Card.Title style={{ color: 'cyan' }}>Welcome to Job Searcher</Card.Title>

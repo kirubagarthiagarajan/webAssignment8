@@ -12,12 +12,12 @@ function App() {
 
   return (
     <Router>
-      <nav class="navbar navbar-dark bg-yellow">
-        <div class="text-center mx-auto">
-          <Link class="links" to='/home'>Home</Link> {"   "}
-          <Link class="links" to="/aboutus">About Us</Link>{"   "}
-          <Link class="links" to="/jobs">Jobs</Link>{"   "}
-          <Link class="links" to="/contact">Contact</Link>{"   "}
+      <nav className="navbar navbar-dark bg-yellow">
+        <div className="text-center mx-auto">
+          <Link className="links" to='/home'>Home</Link> {"   "}
+          <Link className="links" to="/aboutus">About Us</Link>{"   "}
+          <Link className="links" to="/jobs">Jobs</Link>{"   "}
+          <Link className="links" to="/contact">Contact</Link>{"   "}
         </div>
 
       </nav>
